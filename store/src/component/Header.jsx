@@ -6,32 +6,34 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import StorefrontIcon from "@material-ui/icons/Storefront";
-import { makeStyles } from "@material-ui/core/styles";
 import { useHistory, NavLink } from "react-router-dom";
+import { isLoggedIn , logout } from "./../utils/auth";
+import {headerStyles} from "../style"
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  managerButton:{
-    right:0,
-  },
-}));
 
 const Header = () => {
   const history = useHistory();
-  const classes = useStyles();
+  const classes = headerStyles();
+
+  console.log(isLoggedIn());
 
   const handleGoToLogin = () => {
-    history.push("/login");
+      history.push("/login");
   };
+
+  const handleLogOut = ()=>{
+    logout();
+    history.push("/");
+    window.location.reload();
+  }
+
+  const handleBackToMain = ()=>{
+    history.push("/");
+  }
 
   return (
     <div>
-      <AppBar position="relative">
+      <AppBar position="relative" className={classes.root}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -41,17 +43,54 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
+          <IconButton onClick={handleBackToMain} edge="start" color="inherit" aria-label="menu">
             <StorefrontIcon />
+            <Typography className={classes.title} variant="h4">فروشگاه من</Typography>
           </IconButton>
-          <Button color="inherit" className={classes.managerButton} onClick={handleGoToLogin}>
-            مدیریت
+          {!isLoggedIn()?
+            <Button
+            color="inherit"
+            className={classes.managerButton}
+            onClick={ handleGoToLogin}
+          >
+            <Typography variant="h6"> مدیریت</Typography>
           </Button>
+          : <Button
+          color="inherit"
+          className={classes.managerButton}
+          onClick={ handleLogOut}
+        >
+          <Typography variant="h6"> خروج از حساب</Typography>
+        </Button>}
+        <div className={classes.linkContainer}>
+        {
+          isLoggedIn() && (
+            <NavLink to="/adminPanel/products">
+              <Typography variant="h6" className={classes.link}>
+              کالاها
+              </Typography>
+            </NavLink>
+          )
+        }
+        {
+          isLoggedIn() && (
+            <NavLink to="/adminPanel/available">
+              <Typography variant="h6" className={classes.link}>
+              موجودی و قیمت
+              </Typography>
+            </NavLink>
+          )
+        }
+        {
+          isLoggedIn() && (
+            <NavLink to="/adminPanel/orders">
+              <Typography variant="h6" className={classes.link}>
+              سفارش ها
+              </Typography>
+            </NavLink>
+          )
+        }
+        </div>
         </Toolbar>
       </AppBar>
     </div>

@@ -1,61 +1,61 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
+import React,{useState} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-  const useStyles = makeStyles((theme) => ({
-    paper: {
-      marginTop: theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-    },
-  }));
+import {login} from "./../api/login";
+import { useHistory } from "react-router-dom";
+import {useLoginPageStyle} from "../style"
 
 const LoginPage = () => {
-    const classes = useStyles();
+  const classes = useLoginPageStyle();
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+ const handleLogin=(e)=>{
+  e.preventDefault();
+  if ((email, password)) {
+    login(email, password)
+      .then((res) => {
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        history.push("/adminPanel/products");
+        window.location.reload();
+      })
+      .catch((err) => console.error(err));
+  } else {
+    console.log("fiels are empty");
+  }
+ }
+
+ const handleChange = (e)=>{
+  if (e.target.name === "email") {
+    setEmail(e.target.value);
+  } else {
+    setPassword(e.target.value);
+  } 
+ }
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        {/* <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar> */}
-        <Typography component="h1" variant="h5">
-          Login
+        <Typography component="h1" variant="h5" className={classes.header}>
+          ورود به پنل مدیریت
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleLogin}>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="آدرس ایمیل"
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleChange}
           />
           <TextField
             variant="outlined"
@@ -63,14 +63,11 @@ const LoginPage = () => {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="رمز عبور"
             type="password"
             id="password"
             autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            onChange={handleChange}
           />
           <Button
             type="submit"
@@ -81,22 +78,8 @@ const LoginPage = () => {
           >
             LOGIn
           </Button>
-          <Grid container>
-            <Grid item xs>
-              {/* <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link> */}
-            </Grid>
-          </Grid>
         </form>
       </div>
-      {/* <Box mt={8}>
-      </Box> */}
     </Container>
   );
 }
