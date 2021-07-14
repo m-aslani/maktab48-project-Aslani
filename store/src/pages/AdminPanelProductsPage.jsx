@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts, deleteProduct } from "../redux/actions/productActions";
+import { getProducts, deleteProduct, setProducts } from "../redux/actions/productActions";
 import MainModal from "../component/MainModal";
 import Button from "@material-ui/core/Button";
 import ProductTable from "../component/ProductTable";
@@ -28,25 +28,40 @@ const AdminPanelProductsPage = () => {
   const products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState({
+    title:"",
+    category:"",
+    description:"",
+    image:"",
+  });
+  const [option, setOption] = useState(false)
+  
+  // useEffect(() => {
+  //   dispatch(getProducts());
+  // }, []);
 
-  const handleDeleteAProduct = (id) => {
-    dispatch(deleteProduct(id));
-    dispatch(getProducts());
-  };
-  console.log(products);
+  // const handleDeleteAProduct = (id) => {
+  //   dispatch(deleteProduct(id));
+  //   dispatch(getProducts());
+  // };
+  // console.log(products);
   
   const handleOpenModal = () => {
     setOpenModal(true);
   };
+  
+  const handleEditModal = (product)=>{
+    setSelectedProduct(product);
+    setOption(true);
+    setOpenModal(true);
+  }
 
   const handleClose = () => {
+    setSelectedProduct({});
     setOpenModal(false);
     // window.location.reload(); 
   };
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
 
   return (
     <div>
@@ -57,9 +72,11 @@ const AdminPanelProductsPage = () => {
         </Button>
       </div>
       <div className={classes.tabelContainer}>
-        <ProductTable columns={columns} products={products} handleOpenModal={handleOpenModal} handleDeleteAProduct={handleDeleteAProduct} />
+        <ProductTable columns={columns} handleOpenModal={handleEditModal}  />
       </div>
-      <MainModal openModal={openModal} handleClose={handleClose} />
+      {openModal &&
+        (<MainModal openModal={openModal} handleClose={handleClose} selectedProduct={selectedProduct} option={option}/>)
+        }
     </div>
   );
 };

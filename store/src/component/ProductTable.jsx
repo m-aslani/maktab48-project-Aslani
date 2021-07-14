@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Avatar from "@material-ui/core/Avatar";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -11,12 +11,25 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import {useTableStyle} from "../style"
+import {useTableStyle} from "../style";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts, deleteProduct, setProducts } from "../redux/actions/productActions";
 
- const ProductTable = ({columns,products,handleOpenModal,handleDeleteAProduct}) => {
+ const ProductTable = ({columns,handleOpenModal}) => {
+  const products = useSelector((state) => state.allProducts.products);
+  const dispatch = useDispatch();
     const classes = useTableStyle();
     const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+
+  const handleDeleteAProduct = (id) => {
+    dispatch(deleteProduct(id));
+    dispatch(getProducts());
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -26,6 +39,8 @@ import {useTableStyle} from "../style"
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  console.log(products);
 
     return (
         <Paper className={classes.root}>
@@ -46,8 +61,7 @@ import {useTableStyle} from "../style"
                 </TableRow>
               </TableHead>
               <TableBody>
-                {products
-                  ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                {products?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((product) => {
                     return (
                       <TableRow
@@ -68,7 +82,7 @@ import {useTableStyle} from "../style"
                         <TableCell align={columns[3].align}>
                           <IconButton
                             aria-label="edit"
-                            onClick={() => handleOpenModal()}
+                            onClick={() => handleOpenModal(product)}
                           >
                             <EditIcon />
                           </IconButton>

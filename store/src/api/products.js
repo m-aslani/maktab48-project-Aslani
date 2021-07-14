@@ -6,6 +6,7 @@ export const getAllProducts = async () => {
     url: "http://localhost:5000/products",
     headers: { "content-type": "application/json" },
   }).catch((err) => console.log(err));
+  console.log(res,"555");
   return res;
 };
 
@@ -24,10 +25,13 @@ export const deleteProductById = async(id)=>{
    })
 }
 
-export const editProductById = async (id , newProduct)=>{
-let res = await axios.put(``,newProduct).catch((err)=> console.log(err));
-console.log(res);
-return res;
+export const editProductById = async ( newProduct)=>{
+  const res = await axios
+    .put(`http://localhost:5000/products/${newProduct.id}`, newProduct)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => console.log(err));
 }
 
 export const addProduct = async (product)=>{

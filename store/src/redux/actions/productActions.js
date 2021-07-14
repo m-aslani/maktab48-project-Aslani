@@ -22,6 +22,13 @@ export const deleteSelectedProduct = (id)=>{
   }
 }
 
+export const editSelectedProduct = (product) => {
+  return {
+    type: ActionTypes.EDIT_SELECTED_PRODUCT,
+    payload: product,
+  };
+};
+
 export const addNewProduct = (product)=>{
 return{
   type:ActionTypes.ADD_PRODUCT,
@@ -30,7 +37,9 @@ return{
 }
 
 export const getProducts = () => async (dispatch, getState) => {
+  console.log("here");
   let res = await getAllProducts();
+  console.log(res.data , "hiii");
     dispatch(setProducts(res.data));
 };
 
@@ -40,14 +49,14 @@ export const getAProduct = (id) => async (dispatch)=>{
 }
 
 export const deleteProduct = (id) => async (dispatch)=>{
-  await deleteProductById(id);
+  await deleteProductById(id)
   dispatch(deleteSelectedProduct(id));
-
 }
 
-export const editProduct = (id,newProduct) =>async(dispatch)=>{
-let res = await editProductById(id,newProduct);
-console.log(res.data);
+export const editProduct = (newProduct) =>async(dispatch)=>{
+  console.log(newProduct);
+ await editProductById(newProduct);
+ dispatch(editSelectedProduct(newProduct));
 }
 
 export const addAProduct = (product) =>async(dispatch)=>{

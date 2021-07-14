@@ -9,16 +9,17 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import { useDispatch } from "react-redux";
-import {addAProduct,getProducts} from "../redux/actions/productActions";
+import {addAProduct , editProduct} from "../redux/actions/productActions";
 import {useModalStyle} from "../style";
 import { useFilePicker } from 'use-file-picker';
 
-const MainModal = ({ openModal, handleClose }) => {
+const MainModal = ({ openModal, handleClose , selectedProduct , option}) => {
+  console.log(selectedProduct);
   const classes = useModalStyle();
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  const [title, setTitle] = useState(selectedProduct.title);
+  const [category, setCategory] = useState(selectedProduct.category);
+  const [description, setDescription] = useState(selectedProduct.description);
+  const [image, setImage] = useState(selectedProduct.image);
   const dispatch = useDispatch();
   let imageUrl ;
 
@@ -29,32 +30,39 @@ const MainModal = ({ openModal, handleClose }) => {
     limitFilesConfig: { max: 2 },
     maxFileSize: 50 ,
   });
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (errors.length) {
-    return <div>Error...</div>;
-  }
   
-  const uploadImage =()=>{
-    openFileSelector();
-    imageUrl = filesContent[0].content;
-    setImage(imageUrl);
-    console.log(imageUrl);
+const uploadImage =()=>{
+  openFileSelector();
+  console.log(filesContent.content);
+  // imageUrl = filesContent[0];
+  filesContent.map((index,file)=>{
+    imageUrl+=file.content;
+  })
+  console.log(imageUrl);
+  setImage(imageUrl);
   }
-  const handleSave = ()=>{
+  const handleSave = (id)=>{
+    if(option){
+      dispatch(editProduct({
+        title,
+        category,
+        description,
+        image,
+        id
+      }))
+    }
+    else{
     dispatch(addAProduct({
       title,
       category,
       description,
       image,
     }));
+  }
     handleClose();
   }
-
-
+  
+  
   return (
     <div>
       <Modal
@@ -117,7 +125,7 @@ const MainModal = ({ openModal, handleClose }) => {
               value={description}
               onChange={(e)=>setDescription(e.target.value)}
             />
-          <Button variant="contained" color="primary" onClick={handleSave} className={classes.button}>
+          <Button variant="contained" color="primary" onClick={()=>handleSave(selectedProduct.id)} className={classes.button}>
                 ذخیره
               </Button>
           </div>
