@@ -14,7 +14,7 @@ export const productReducer = (state = initialState, { type, payload }) => {
       return { ...state, selectedProduct: payload };
 
     case ActionTypes.REMOVE_SELECTED_PRODUCT:
-      return state.products.filter(({id})=> id !== payload);
+      return {...state, products: state.products.filter(({id})=> id !== payload)};
 
       case ActionTypes.ADD_PRODUCT:
         return {...state.products,payload}

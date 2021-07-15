@@ -62,5 +62,5 @@ export const editProduct = (newProduct) =>async(dispatch)=>{
 export const addAProduct = (product) =>async(dispatch)=>{
   let res = await addProduct(product);
   console.log(res);
-  dispatch(addNewProduct(product));
+  dispatch(addNewProduct(res.data));
 }
