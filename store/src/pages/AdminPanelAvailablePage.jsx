@@ -33,14 +33,6 @@ const AdminPanelAvailablePage = () => {
     <div>
       <div className={classes.headerContainer}>
         <h1 className={classes.header}>مدیریت موجودی و قیمت</h1>
-        <Button
-          variant="contained"
-          color="secondary"
-          className={classes.button}
-          disabled={option ? false : true}
-        >
-          ذخیره
-        </Button>
       </div>
       <PriceTable handleSave={handleSave} />
     </div>

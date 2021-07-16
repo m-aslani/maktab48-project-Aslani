@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
@@ -14,7 +13,6 @@ import {useModalStyle} from "../style";
 import { useFilePicker } from 'use-file-picker';
 
 const MainModal = ({ openModal, handleClose , selectedProduct , option}) => {
-  console.log(selectedProduct);
   const classes = useModalStyle();
   const [title, setTitle] = useState(selectedProduct.title);
   const [category, setCategory] = useState(selectedProduct.category);

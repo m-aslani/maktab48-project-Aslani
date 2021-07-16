@@ -6,7 +6,7 @@ export const getAllProducts = async () => {
     url: "http://localhost:5000/products",
     headers: { "content-type": "application/json" },
   }).catch((err) => console.log(err));
-  console.log(res,"555");
+  console.log(res);
   return res;
 };
 

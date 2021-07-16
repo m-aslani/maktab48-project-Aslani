@@ -37,9 +37,7 @@ return{
 }
 
 export const getProducts = () => async (dispatch, getState) => {
-  console.log("here");
   let res = await getAllProducts();
-  console.log(res.data , "hiii");
     dispatch(setProducts(res.data));
 };
 
