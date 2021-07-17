@@ -62,7 +62,7 @@ const OrderTable = ({ orders }) => {
       <Paper className={classes.root}>
         <TableContainer className={classes.container}>
           <Table stickyHeader aria-label="sticky table">
-            <TableHead>
+            <TableHead className={classes.tabelHeader} style={{backgroundColor:"yellow"}}>
               <TableRow>
                 {columns.map((column) => (
                   <TableCell

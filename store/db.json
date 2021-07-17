@@ -153,7 +153,7 @@
       "phoneNumber": "09151234567",
       "deliveryTime": "99/4/3",
       "orderTime": "99/4/1",
-      "condition": true,
+      "condition": false,
       "sum": 2000,
       "orderedProducts": [
         {

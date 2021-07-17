@@ -33,8 +33,10 @@ const AdminPanelAvailablePage = () => {
     <div>
       <div className={classes.headerContainer}>
         <h1 className={classes.header}>مدیریت موجودی و قیمت</h1>
-      </div>
+      </div >
+      <div className={classes.tabelContainer}>
       <PriceTable handleSave={handleSave} />
+      </div>
     </div>
   );
 };

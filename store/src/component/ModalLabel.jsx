@@ -2,13 +2,13 @@ import React from 'react'
 
  const ModalLabel = ({label,text}) => {
     return (
-        <div style={{display:"flex"}}>
-        <label>
+        <div className="line">
+        <label className="line__text">
             <strong>
             {label}
             </strong>
         </label>
-        <p>{text}</p>
+        <p className="line__text">{text}</p>
     </div>
     )
 }

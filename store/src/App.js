@@ -1,4 +1,5 @@
 import './App.css';
+import "./assets/sass/app.scss";
 import Header from "./component/Header";
 import LoginPage from "./pages/LoginPage";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";

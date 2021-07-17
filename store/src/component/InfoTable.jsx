@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import { useTableStyle } from "../style";
+import { useInfoTable } from "../style";
 
 const columns = [
   { id: "title", label: "نام کالا", minWidth: 100 },
@@ -21,7 +21,7 @@ const columns = [
 ];
 
 const InfoTable = ({products}) => {
-  const classes = useTableStyle();
+  const classes = useInfoTable();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -87,7 +87,7 @@ const InfoTable = ({products}) => {
           page={page}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
-          style={{width:"350px"}}
+          className={classes.pagination}
         />
       </Paper>
     </div>
