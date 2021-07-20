@@ -1,0 +1,31 @@
+.product-info{
+    &--image-containar{
+        object-fit: contain;
+        margin: 20px;
+        
+        &--product-img{
+            width: 500px;
+            height: 500px;
+        }
+    }
+
+    &--text{
+        margin: 25px 0;
+    }
+
+    &--btn{
+        background-color: #E34234;
+    }
+
+    &--input{
+        margin: 25px;
+        width: 50px;
+    }
+}
+
+.description{
+    &--text{
+        margin: 25px 0;
+    }
+
+}

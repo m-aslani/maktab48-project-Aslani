@@ -1,0 +1,15 @@
+.card-Container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    &--product-info{
+        display: flex;
+    }
+    &--description{
+        margin: 25px;
+        border: black 2px solid;
+        padding: 10px;
+    }
+}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { getProducts, deleteProduct, setProducts } from "../redux/actions/productActions";
 import MainModal from "../component/MainModal";
 import Button from "@material-ui/core/Button";
@@ -25,8 +24,6 @@ const columns = [
 
 const AdminPanelProductsPage = () => {
   const classes = useProductsPageStyle();
-  const products = useSelector((state) => state.allProducts.products);
-  const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({
     title:"",

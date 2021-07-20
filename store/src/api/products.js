@@ -10,6 +10,15 @@ export const getAllProducts = async () => {
   return res;
 };
 
+export const getProductsByCategory = async (category) => {
+  let res = await axios({
+    method: "get",
+    url: `http://localhost:5000/products/${category}`,
+    headers: { "content-type": "application/json" },
+  }).catch((err) => console.log(err));
+  return res;
+};
+
 export const getAProductById = async (id) => {
   let res = await axios({
     method: "get",
@@ -19,23 +28,23 @@ export const getAProductById = async (id) => {
   return res;
 };
 
-export const deleteProductById = async(id)=>{
-   await axios.delete(`http://localhost:5000/products/${id}`).then(res=>{
-     console.log(res);
-   })
-}
+export const deleteProductById = async (id) => {
+  await axios.delete(`http://localhost:5000/products/${id}`).then((res) => {
+    console.log(res);
+  });
+};
 
-export const editProductById = async ( newProduct)=>{
+export const editProductById = async (newProduct) => {
   const res = await axios
     .put(`http://localhost:5000/products/${newProduct.id}`, newProduct)
     .then((res) => {
       return res.data;
     })
     .catch((err) => console.log(err));
-}
+};
 
-export const addProduct = async (product)=>{
-  let res = await axios.post("http://localhost:5000/products",product);
+export const addProduct = async (product) => {
+  let res = await axios.post("http://localhost:5000/products", product);
   console.log(res);
   return res;
-}
+};
