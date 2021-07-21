@@ -15,16 +15,27 @@ import {useTableStyle} from "../style";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts, deleteProduct, setProducts } from "../redux/actions/productActions";
 
- const ProductTable = ({columns,handleOpenModal}) => {
-  const products = useSelector((state) => state.allProducts.products);
+ const ProductTable = ({columns,handleOpenModal,products}) => {
+  // const products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
     const classes = useTableStyle();
     const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  // const [loading, setLoading] = useState(true);
+  // let loading = false;
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+  // if(!products){
+  //   loading = true;
+  //   console.log("hi");
+  // }
+  // else{
+  //   loading = false;
+  // }
+
+  // useEffect(() => {
+  //   dispatch(getProducts());
+  //   // loading = false;
+  // }, []);
 
   const handleDeleteAProduct = (id) => {
     dispatch(deleteProduct(id));
@@ -43,7 +54,7 @@ import { getProducts, deleteProduct, setProducts } from "../redux/actions/produc
   console.log(products);
 
     return (
-        <Paper className={classes.root}>
+      <Paper className={classes.root}>
           <TableContainer className={classes.container}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
@@ -71,7 +82,7 @@ import { getProducts, deleteProduct, setProducts } from "../redux/actions/produc
                         key={product.code}
                       >
                         <TableCell align={columns[0].align}>
-                          <Avatar src={product.image} variant="square" />
+                          <Avatar src={product.image[0].data_url} variant="square" />
                         </TableCell>
                         <TableCell align={columns[1].align}>
                           {product.title}

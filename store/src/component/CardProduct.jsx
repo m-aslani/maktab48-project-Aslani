@@ -30,7 +30,7 @@ const useStyles = makeStyles({
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image={product.image}
+                image={product.image[0].data_url}
                 title={product.title}
               />
               <CardContent>

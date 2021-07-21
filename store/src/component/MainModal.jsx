@@ -8,37 +8,27 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import { useDispatch } from "react-redux";
-import {addAProduct , editProduct , getProducts} from "../redux/actions/productActions";
+import {addAProduct , editProduct ,getProducts} from "../redux/actions/productActions";
 import {useModalStyle} from "../style";
-import { useFilePicker } from 'use-file-picker';
+import ImageUploading from "react-images-uploading";
 
 const MainModal = ({ openModal, handleClose , selectedProduct , option}) => {
   const classes = useModalStyle();
   const [title, setTitle] = useState(selectedProduct.title);
   const [category, setCategory] = useState(selectedProduct.category);
   const [description, setDescription] = useState(selectedProduct.description);
+  const [images, setImages] = useState(selectedProduct.image);
   const [image, setImage] = useState(selectedProduct.image);
   const dispatch = useDispatch();
-  let imageUrl ;
-
-  const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
-    readAs: "DataURL",
-    accept: "image/*",
-    multiple: true,
-    limitFilesConfig: { max: 2 },
-    maxFileSize: 50 ,
-  });
+  const maxNumber = 1;
   
-const uploadImage =()=>{
-  openFileSelector();
-  console.log(filesContent.content);
-  // imageUrl = filesContent[0];
-  filesContent.map((index,file)=>{
-    imageUrl+=file.content;
-  })
-  console.log(imageUrl);
-  setImage(imageUrl);
-  }
+  const onChange = (imageList, addUpdateIndex) => {
+    // data for submit
+    console.log(imageList[0]);
+    setImages(imageList);
+    setImage(imageList)
+  };
+  
   const handleSave = (id)=>{
     if(option){
       dispatch(editProduct({
@@ -80,16 +70,59 @@ const uploadImage =()=>{
           <div className={classes.paper}>
             <h3>افزودن / ویرایش کالا</h3>
             <div className={classes.imageContainer}>
-              <TextField
+              {/* <TextField
                 id="outlined-basic"
                 label="تصویر"
                 variant="outlined"
                 className={classes.textFild}
                 value={image}
+                type="file"
+                onChange={(e) => uploadImage(e)}
               />
-              <Button variant="contained" color="primary" className={classes.button} onClick={() => uploadImage()}>
+              <Button variant="contained" color="primary" className={classes.button} >
                 Browse
-              </Button>
+              </Button> */}
+                    <ImageUploading
+        multiple
+        value={images}
+        onChange={onChange}
+        maxNumber={maxNumber}
+        dataURLKey="data_url"
+      >
+        {({
+          imageList,
+          onImageUpload,
+          onImageRemoveAll,
+          onImageUpdate,
+          onImageRemove,
+          isDragging,
+          dragProps
+        }) => (
+          // write your building UI
+          <div className="upload__image-wrapper">
+            <button
+              style={isDragging ? { color: "red" } : null}
+              onClick={onImageUpload}
+              {...dragProps}
+            >
+              Click or Drop here
+            </button>
+            &nbsp;
+            <button onClick={onImageRemoveAll}>Remove all images</button>
+            {console.log(imageList),
+            imageList.map((image, index) => (
+              <div key={index} className="image-item">
+                <img src={image.data_url} alt="" width="100" />
+                <div className="image-item__btn-wrapper">
+                  <button onClick={() => onImageUpdate(index)}>Update</button>
+                  <button onClick={() => onImageRemove(index)}>Remove</button>
+                </div>
+              </div>
+            ))
+            }
+          </div>
+        )}
+      </ImageUploading>
             </div>
             <TextField
               id="outlined-basic"
@@ -111,9 +144,10 @@ const uploadImage =()=>{
                 }}
               >
                 <option aria-label="None" value="" />
-                <option>لباس زنانه</option>
-                <option>لباس مردانه</option>
-                <option>الکترونیک</option>
+                <option>گوشی همراه</option>
+                <option>ساعت هوشمند</option>
+                <option>لپ تاپ</option>
+                <option>هدفن</option>
               </Select>
             </FormControl>
             <TextField

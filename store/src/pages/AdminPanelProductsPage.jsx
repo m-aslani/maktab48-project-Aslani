@@ -3,7 +3,9 @@ import { getProducts, deleteProduct, setProducts } from "../redux/actions/produc
 import MainModal from "../component/MainModal";
 import Button from "@material-ui/core/Button";
 import ProductTable from "../component/ProductTable";
-import {useProductsPageStyle} from "../style"
+import {useProductsPageStyle} from "../style";
+import { useSelector, useDispatch } from "react-redux";
+// import { getProducts, deleteProduct, setProducts } from "../redux/actions/productActions";
 
 const columns = [
   { id: "image", label: "تصویر", minWidth: 150 },
@@ -25,6 +27,8 @@ const columns = [
 const AdminPanelProductsPage = () => {
   const classes = useProductsPageStyle();
   const [openModal, setOpenModal] = useState(false);
+  const products = useSelector((state) => state.allProducts.products);
+  const dispatch = useDispatch();
   const [selectedProduct, setSelectedProduct] = useState({
     title:"",
     category:"",
@@ -33,9 +37,9 @@ const AdminPanelProductsPage = () => {
   });
   const [option, setOption] = useState(false)
   
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  // }, []);
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
 
   // const handleDeleteAProduct = (id) => {
   //   dispatch(deleteProduct(id));
@@ -55,6 +59,7 @@ const AdminPanelProductsPage = () => {
 
   const handleClose = () => {
     setSelectedProduct({});
+    dispatch(getProducts());
     setOpenModal(false);
     // window.location.reload(); 
   };
@@ -69,7 +74,7 @@ const AdminPanelProductsPage = () => {
         </Button>
       </div>
       <div className={classes.tabelContainer}>
-        <ProductTable columns={columns} handleOpenModal={handleEditModal}  />
+        <ProductTable columns={columns} handleOpenModal={handleEditModal} products={products} />
       </div>
       {openModal &&
         (<MainModal openModal={openModal} handleClose={handleClose} selectedProduct={selectedProduct} option={option}/>)

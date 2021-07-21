@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
 import { Input } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+let i = 0;
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -21,16 +22,20 @@ const ProductDetail = () => {
   const handleCountProduct = (e)=>{
     //   if(e.target.value <)
   }
-
+  
+  console.log(selectedProduct.image)
   return (
     <div>
       <div className="card-Container--product-info">
         <div className="product-info--image-containar">
-            {console.log(selectedProduct.image)}
-          <img
-            src={selectedProduct.image}
-            className="product-info--image-containar--product-img"
-          />
+          {
+            selectedProduct.image?.map((img,index)=>(
+              <img
+                src={img.data_url}
+                className="product-info--image-containar--product-img"
+              />
+            ))
+          }
         </div>
         <div>
           <div>
