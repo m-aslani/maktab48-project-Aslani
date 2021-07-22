@@ -1,8 +1,30 @@
+.category-page{
+    display: flex;
+
+    &--product-container{
+        
+    }
+}
+
+
+.title-container{
+    display: flex;
+    align-items: center;
+    &--title{
+        margin: 50px 50px 5px 0px;
+        color: #E34234;
+        font-weight: bolder;
+    }
+    &--icon{
+        color: #E34234;
+        margin-top: 50px;
+    }
+}
 .card-Container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 
     &--product-info{
         display: flex;

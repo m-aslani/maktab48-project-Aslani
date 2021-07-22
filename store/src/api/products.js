@@ -6,14 +6,13 @@ export const getAllProducts = async () => {
     url: "http://localhost:5000/products",
     headers: { "content-type": "application/json" },
   }).catch((err) => console.log(err));
-  console.log(res);
   return res;
 };
 
 export const getProductsByCategory = async (category) => {
   let res = await axios({
     method: "get",
-    url: `http://localhost:5000/products/${category}`,
+    url: `http://localhost:5000/products?category=${category}`,
     headers: { "content-type": "application/json" },
   }).catch((err) => console.log(err));
   return res;

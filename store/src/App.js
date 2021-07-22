@@ -11,6 +11,7 @@ import AdminPanelProductsPage from './pages/AdminPanelProductsPage';
 import AdminPanelAvailablePage from './pages/AdminPanelAvailablePage';
 import AdminPanelOrderPage from './pages/AdminPanelOrderPage';
 import ProductDetail from './pages/ProductDetail';
+import ProductByCategoryList from './pages/ProductByCategoryList';
 
 function App() {
   return (
@@ -18,13 +19,16 @@ function App() {
       <Router>
           <Header/>
         <Switch>
+          <div>
           <Route path="/" exact component={MainPage} />
           <Route path ="/login" exact component={LoginPage}/>
+          <Route path ="/products/category/:category" exact component={ProductByCategoryList}/>
           <Route path ="/products/:id" exact component={ProductDetail}/>
           <ProtectedRoute path ="/adminPanel/products" exact component={AdminPanelProductsPage}/>
           <ProtectedRoute path ="/adminPanel/available" exact component={AdminPanelAvailablePage}/>
           <ProtectedRoute path ="/adminPanel/orders" exact component={AdminPanelOrderPage}/>
-        </Switch>
+          </div>
+          </Switch>
       </Router>
     </div>
   );

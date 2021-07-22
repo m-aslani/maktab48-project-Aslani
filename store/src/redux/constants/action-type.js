@@ -11,3 +11,8 @@ export const ActionTypesOrder = {
   SET_NOTDELIVERED_ORDERS: "SET_NOTDELIVERED_ORDERS",
   DELIVERED_ORDER:"DELIVERED_ORDER",
 };
+
+export const ActionTypeCart = {
+  ADD_TO_CART:"ADD_TO_CART",
+  GET_CART:"GET_CART",
+}

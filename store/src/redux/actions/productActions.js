@@ -1,5 +1,5 @@
 import { ActionTypes } from "../constants/action-type.js";
-import {getAllProducts, getAProductById , deleteProductById , editProductById , addProduct} from "../../api/products";
+import {getAllProducts, getAProductById , deleteProductById , editProductById , addProduct , getProductsByCategory } from "../../api/products";
 
 export const setProducts = (products) => {
   return {
@@ -39,6 +39,11 @@ return{
 export const getProducts = () => async (dispatch, getState) => {
   let res = await getAllProducts();
     dispatch(setProducts(res.data));
+};
+export const getProductsBYCategory = (category) => async (dispatch, getState) => {
+  let res = await getProductsByCategory(category);
+  // console.log(res?.data);
+    dispatch(setProducts(res?.data));
 };
 
 export const getAProduct = (id) => async (dispatch)=>{
