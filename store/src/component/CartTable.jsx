@@ -10,6 +10,8 @@ import TableRow from "@material-ui/core/TableRow";
 import { useInfoTable } from "../style";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useDispatch} from "react-redux";
+import { deleteFromCart } from "../redux/actions/cartAction";
 
 const columns = [
   { id: "title", label: "نام کالا", minWidth: 100 },
@@ -31,6 +33,7 @@ const CartTable = ({ cart }) => {
   const classes = useInfoTable();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const dispatch = useDispatch();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -40,6 +43,10 @@ const CartTable = ({ cart }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const handleDeletFromCart = (id)=>{
+    dispatch(deleteFromCart(id));
+  }
 
   return (
     <div>
@@ -82,8 +89,8 @@ const CartTable = ({ cart }) => {
                       </TableCell>
                       <TableCell align={columns[2].align}></TableCell>
                       <TableCell align={columns[3].align}>
-                        <IconButton>
-                          <DeleteIcon />
+                        <IconButton onClick={()=>handleDeletFromCart(product.id)}>
+                          <DeleteIcon/>
                         </IconButton>
                       </TableCell>
                     </TableRow>

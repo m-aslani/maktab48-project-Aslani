@@ -1,6 +1,5 @@
 import { makeStyles, withStyles } from "@material-ui/core";
 import { COLORS } from "./constantVariables";
-import MuiTableHead from "@material-ui/core/TableHead";
 
 const drawerWidth = 240;
 
@@ -14,6 +13,8 @@ export const headerStyles = makeStyles((theme) => ({
       width: `clac(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+    zIndex: theme.zIndex.drawer + 1,
+    zIndex:99
   },
   menuButton: {
     marginRight: theme.spacing(2),

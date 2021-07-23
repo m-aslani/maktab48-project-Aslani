@@ -2,14 +2,22 @@ import { ActionTypes } from "../constants/action-type";
 
 const initialState = {
   products: [],
+  cellPhones: [],
+  smartWatch: [],
   selectedProduct: {},
 };
 
 export const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ActionTypes.SET_PRODUCTS:
-      return { ...state, products: payload };
+      return { ...state.products, products: payload };
 
+    case ActionTypes.SET_CELLPHONE_PRODUC:
+      return { ...state.cellPhones, cellPhones: payload };
+
+    case ActionTypes.SET_SMARTWATCH_PRODUC:
+      return { ...state.smartWatch, smartWatch: payload };
+      
     case ActionTypes.SELECTED_PRODUCT:
       return { ...state, selectedProduct: payload };
 

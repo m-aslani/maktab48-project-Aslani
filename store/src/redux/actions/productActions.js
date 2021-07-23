@@ -8,6 +8,19 @@ export const setProducts = (products) => {
   };
 };
 
+export const setCellPhoneProduct = (products)=>{
+  return{
+    type: ActionTypes.SET_CELLPHONE_PRODUC,
+    payload:products,
+  }
+}
+export const setSmartWatchProduct = (products)=>{
+  return{
+    type: ActionTypes.SET_SMARTWATCH_PRODUC,
+    payload:products,
+  }
+}
+
 export const selectedProduct = (product) => {
   return {
     type: ActionTypes.SELECTED_PRODUCT,
@@ -42,9 +55,24 @@ export const getProducts = () => async (dispatch, getState) => {
 };
 export const getProductsBYCategory = (category) => async (dispatch, getState) => {
   let res = await getProductsByCategory(category);
-  // console.log(res?.data);
-    dispatch(setProducts(res?.data));
+  if(category == "گوشی همراه"){
+    console.log("6");
+    dispatch(setCellPhoneProduct(res?.data));
+  }
+  else if(category == "ساعت هوشمند"){
+    console.log("5");
+    dispatch(setSmartWatchProduct(res?.data));
+  }
 };
+
+export const getCellphone = ()=>async(dispatch)=>{
+  let res = await getProductsByCategory("گوشی همراه");
+  dispatch(setCellPhoneProduct(res?.data));
+}
+export const getSmartWatch = ()=>async(dispatch)=>{
+  let res = await getProductsByCategory("ساعت هوشمند");
+  dispatch(setSmartWatchProduct(res?.data));
+}
 
 export const getAProduct = (id) => async (dispatch)=>{
   let res = await getAProductById(id);

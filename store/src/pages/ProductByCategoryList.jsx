@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProductsBYCategory } from "../redux/actions/productActions";
+import { getProducts } from "../redux/actions/productActions";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import CardProduct from "../component/CardProduct";
@@ -24,14 +24,21 @@ const ProductByCategoryList = () => {
   const dispatch = useDispatch();
   const { category } = useParams();
   const [mobileOpen, setMobileOpen] = useState(false);
+  let productsByCategory = [];
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   useEffect(() => {
-    dispatch(getProductsBYCategory(category));
+    dispatch(getProducts());
   }, []);
+
+  products.map((product,index)=>{
+    if(product.category == category){
+      productsByCategory.push(product);
+    }
+  })
 
   return (
     <div className="category-page">
@@ -45,14 +52,14 @@ const ProductByCategoryList = () => {
           >
             <MenuIcon />
           </IconButton>
-          {/* <SideBar/> */}
+          <SideBar/>
       </div>
       <div className="category-page--product-container" style={{ gridColumnEnd: 'span 8' }}>
         <div className="title-container">
         <h1 className="title-container--title">{category}</h1>
         </div>
         <div className="card-Container">
-          {products?.map((product, index) => {
+          {productsByCategory?.map((product, index) => {
             return (
               <div key={product.id}>
                 <Link to={`/products/${product.id}`}>

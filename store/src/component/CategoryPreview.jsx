@@ -5,13 +5,7 @@ import { Link } from "react-router-dom";
 import CardProduct from "../component/CardProduct";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-const CategoryPreview = ({ categoryName }) => {
-    const products = useSelector((state) => state.allProducts.products);
-    const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProductsBYCategory(categoryName));
-  }, []);
+const CategoryPreview = ({ categoryName , products }) => {
 
   return (
     <div>

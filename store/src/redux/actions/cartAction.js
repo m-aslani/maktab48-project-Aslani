@@ -7,7 +7,17 @@ export const setCartProducts = (product) => {
   };
 };
 
+export const deleteAProduct = (id) =>{
+  return{
+    type: ActionTypeCart.DELETE,
+    payload:id,
+  }
+}
+
 export const addToCart = (product) => (dispatch) => {
-    console.log(product);
   dispatch(setCartProducts(product));
 };
+
+export const deleteFromCart = (id) => (dispatch) =>{
+dispatch(deleteAProduct(id));
+}

@@ -9,7 +9,6 @@ import { addToCart } from "../redux/actions/cartAction";
 
 const ProductDetail = () => {
   const { id } = useParams();
-
   const dispatch = useDispatch();
   const selectedProduct = useSelector(
     (state) => state.allProducts.selectedProduct
@@ -26,9 +25,7 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
-    console.log("hi");
     dispatch(addToCart([...cart,selectedProduct]));
-    console.log(cart);
   };
 
   return (
