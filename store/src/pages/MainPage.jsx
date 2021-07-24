@@ -27,9 +27,9 @@ import { getProductsBYCategory , getCellphone , getSmartWatch} from "../redux/ac
 
     return (
         <div>
-            <Typography  variant="h2" align="center" color="textPrimary">
+            {/* <Typography  variant="h2" align="center" color="textPrimary">
               Main page
-            </Typography>
+            </Typography> */}
             <CategoryPreview categoryName="گوشی همراه" products={cellPhone}/>
             <CategoryPreview categoryName="ساعت هوشمند" products={smartWatch}/>
             <CategoryPreview categoryName="هنزفری"/>

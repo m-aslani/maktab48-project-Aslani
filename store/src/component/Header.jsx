@@ -4,17 +4,16 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import { useHistory, NavLink } from "react-router-dom";
 import { isLoggedIn, logout } from "./../utils/auth";
 import { headerStyles } from "../style";
-import SideBar from "./SideBar";
 import Badge from "@material-ui/core/Badge";
 import { withStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
 import CartModal from "./CartModal";
+import { addToCart } from "../redux/actions/cartAction";
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -32,14 +31,11 @@ const Header = () => {
   const [cartNumber, setCartNumber] = useState(0);
   const cart = useSelector((state)=>state.cart.cartProducts);
   const [openModal, setOpenModal] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setCartNumber(cart.length);
+    setCartNumber(cart?.length);
   }, [cart])
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
 
   const handleGoToLogin = () => {
     history.push("/login");
@@ -64,18 +60,9 @@ const Header = () => {
   };
 
   return (
-    <div>
-      <AppBar position="relative" className={classes.root}>
+    <div style={{marginBottom:"50px"}}>
+      <AppBar position="fixed" className={classes.root}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            onClick={handleDrawerToggle}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
           <IconButton
             onClick={handleBackToMain}
             edge="start"
@@ -136,7 +123,6 @@ const Header = () => {
           </div>
         </Toolbar>
       </AppBar>
-      {/* <SideBar/> */}
       {openModal &&
       <CartModal open={openModal} handleClose={handleClose} cartProducts={cart}/>
       }

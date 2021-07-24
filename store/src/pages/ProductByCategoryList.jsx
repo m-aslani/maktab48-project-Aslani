@@ -52,7 +52,7 @@ const ProductByCategoryList = () => {
           >
             <MenuIcon />
           </IconButton>
-          <SideBar/>
+          <SideBar handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen}/>
       </div>
       <div className="category-page--product-container" style={{ gridColumnEnd: 'span 8' }}>
         <div className="title-container">
@@ -62,7 +62,7 @@ const ProductByCategoryList = () => {
           {productsByCategory?.map((product, index) => {
             return (
               <div key={product.id}>
-                <Link to={`/products/${product.id}`}>
+                <Link to={`/products/${product.id}`} className="link">
                   <CardProduct product={product} />
                 </Link>
               </div>

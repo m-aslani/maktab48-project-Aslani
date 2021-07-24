@@ -15,7 +15,7 @@ const SlideBarListItem = ({ category }) => {
             <FiberManualRecordIcon />
           </ListItemIcon>
           <ListItemText>
-              <Link to={category}>
+              <Link to={category} className="link">
             <h3>
               <strong>{category}</strong>
             </h3>

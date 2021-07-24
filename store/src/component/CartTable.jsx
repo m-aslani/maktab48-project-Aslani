@@ -49,8 +49,8 @@ const CartTable = ({ cart }) => {
   }
 
   return (
-    <div>
-      <Paper className={classes.root}>
+    <div className={classes.root}>
+      <Paper >
         <TableContainer className={classes.container}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead
@@ -87,7 +87,9 @@ const CartTable = ({ cart }) => {
                       <TableCell align={columns[1].align}>
                         {product.price}
                       </TableCell>
-                      <TableCell align={columns[2].align}></TableCell>
+                      <TableCell align={columns[2].align}>
+                        {product.numberOfProduct}
+                      </TableCell>
                       <TableCell align={columns[3].align}>
                         <IconButton onClick={()=>handleDeletFromCart(product.id)}>
                           <DeleteIcon/>

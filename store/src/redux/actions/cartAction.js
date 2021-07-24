@@ -14,7 +14,20 @@ export const deleteAProduct = (id) =>{
   }
 }
 
+export const setCart = (cart)=>{
+  return{
+    type:ActionTypeCart.GET_CART,
+    payload:cart,
+  }
+}
+
+// export const getCart = ()=> async(dispatch)=>{
+// let cart = await JSON.parse(localStorage.getItem('cart'));
+// dispatch(setCart(cart));
+// }
+
 export const addToCart = (product) => (dispatch) => {
+  // localStorage.setItem('cart',JSON.stringify(product));
   dispatch(setCartProducts(product));
 };
 

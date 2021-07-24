@@ -14,7 +14,8 @@ export const headerStyles = makeStyles((theme) => ({
       marginLeft: drawerWidth,
     },
     zIndex: theme.zIndex.drawer + 1,
-    zIndex:99
+    zIndex:99,
+    marginBottom:"50px"
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -155,6 +156,9 @@ export const useOrderTable = makeStyles((theme) => ({
 
 export const useInfoTable = makeStyles((theme) => ({
   root: {
+    '& .super-app-theme--header': {
+      backgroundColor: 'rgba(255, 7, 0, 0.55)',
+    },
     width: "100%",
     margin: "10px 0",
   },

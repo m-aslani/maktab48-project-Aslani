@@ -16,6 +16,7 @@ export const ActionTypesOrder = {
 };
 
 export const ActionTypeCart = {
+  GET_CART:"GET_CART",
   ADD_TO_CART:"ADD_TO_CART",
   DELETE:"DELETE_CART",
 }
