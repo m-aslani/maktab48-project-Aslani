@@ -15,6 +15,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 350,
     margin: "50px 20px 0 20px",
+    boxShadow: "0px 1px 6px 0px #681811b4",
   },
   media: {
     height: 350,
@@ -24,12 +25,14 @@ const useStyles = makeStyles({
     width: 350,
     height: 350,
     boxShadow: "0px 1px 6px 0px #681811b4",
-    // box-shadow: 0px 1px 6px 0px #681811b4;
   },
   btn: {
     backgroundColor: "#E34234",
     margin: "0px 0px 0 50px",
   },
+  myAlert:{
+    marginTop:"100px"
+  }
 });
 
 const ProductDetail = () => {
@@ -40,7 +43,6 @@ const ProductDetail = () => {
     (state) => state.allProducts.selectedProduct
   );
   const [number, setNumber] = useState(1);
-
   const cart = useSelector((state) => state.cart.cartProducts);
 
   useEffect(() => {
@@ -55,7 +57,6 @@ const ProductDetail = () => {
     dispatch(
       addToCart([...cart, { ...selectedProduct, numberOfProduct: number }])
     );
-    // localStorage.setItem('cart',JSON.stringify([...cart, { ...selectedProduct, numberOfProduct: number }]));
   };
 
   return (
@@ -95,8 +96,11 @@ const ProductDetail = () => {
                   color="secondary"
                   className={classes.btn}
                   onClick={() => handleAddToCart()}
+                  disabled={selectedProduct?.number ? false : true}
                 >
-                  افزودن به سبد خرید
+                  <strong>
+                  {selectedProduct?.number ? "افزودن به سبد خرید" : "موجودی این محصول تمام شده است"}
+                  </strong>
                   <AddIcon />
                 </Button>
                 <input

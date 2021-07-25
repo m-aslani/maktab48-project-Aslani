@@ -21,13 +21,7 @@ export const setCart = (cart)=>{
   }
 }
 
-// export const getCart = ()=> async(dispatch)=>{
-// let cart = await JSON.parse(localStorage.getItem('cart'));
-// dispatch(setCart(cart));
-// }
-
 export const addToCart = (product) => (dispatch) => {
-  // localStorage.setItem('cart',JSON.stringify(product));
   dispatch(setCartProducts(product));
 };
 
