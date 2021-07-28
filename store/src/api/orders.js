@@ -1,5 +1,14 @@
 import axios from "axios";
 
+export const getOrders = async ()=>{
+    let res = await axios({
+        method: "get",
+        url: "http://localhost:5000/orders",
+        headers: { "content-type": "application/json" },
+      }).catch((err) => console.log(err));
+      return res;
+}
+
 export const getDeliveredOrdersList = async ()=>{
     let res = await axios({
         method: "get",
@@ -26,4 +35,10 @@ export const deliveredOrder = async (deliveredOrder) =>{
       return res.data;
     })
     .catch((err) => console.log(err));
+}
+
+export const addOrder = async (order)=>{
+    let res = await axios.post("http://localhost:5000/orders",order);
+    console.log(res);
+    return res;
 }

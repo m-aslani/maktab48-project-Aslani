@@ -55,7 +55,12 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     dispatch(
-      addToCart([...cart, { ...selectedProduct, numberOfProduct: number }])
+      addToCart([...cart, { 
+        id:selectedProduct.id,
+        title: selectedProduct.title,
+        price:selectedProduct.price,
+       numberOfProduct: number 
+      }])
     );
   };
 

@@ -10,15 +10,18 @@ export const ActionTypes = {
 };
 
 export const ActionTypesOrder = {
+  GET_ORDERS:"GET_ORDERS",
   SET_DELIVERED_ORDERS: "SET_DELIVERED_ORDERS",
   SET_NOTDELIVERED_ORDERS: "SET_NOTDELIVERED_ORDERS",
   DELIVERED_ORDER:"DELIVERED_ORDER",
+  ADD_ORDER:"ADD_ORDER"
 };
 
 export const ActionTypeCart = {
   GET_CART:"GET_CART",
   ADD_TO_CART:"ADD_TO_CART",
   DELETE:"DELETE_CART",
+  CLEAR_CART:"CLEAR_CART",
 }
 
 export const ActionTypeUserInfo = {

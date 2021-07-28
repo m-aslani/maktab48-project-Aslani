@@ -21,10 +21,20 @@ export const setCart = (cart)=>{
   }
 }
 
+export const clearCart = ()=>{
+  return{
+    type: ActionTypeCart.CLEAR_CART
+  }
+}
+
 export const addToCart = (product) => (dispatch) => {
   dispatch(setCartProducts(product));
 };
 
 export const deleteFromCart = (id) => (dispatch) =>{
 dispatch(deleteAProduct(id));
+}
+
+export const clear = () => (dispatch)=>{
+  dispatch(clearCart());
 }

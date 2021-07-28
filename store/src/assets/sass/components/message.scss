@@ -1,0 +1,15 @@
+.messageContainer {
+//   &--imgContainer {
+//     width: 90%;
+    display: flex;
+    justify-content: center;
+    margin:150px 0;
+    align-items: center;
+
+    &--img {
+      object-fit: contain;
+      width: 100px;
+      height: 100px;
+    }
+//   }
+}
