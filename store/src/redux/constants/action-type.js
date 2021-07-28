@@ -20,3 +20,7 @@ export const ActionTypeCart = {
   ADD_TO_CART:"ADD_TO_CART",
   DELETE:"DELETE_CART",
 }
+
+export const ActionTypeUserInfo = {
+  ADD_USER_INFO: "ADD_USER_INFO",
+}

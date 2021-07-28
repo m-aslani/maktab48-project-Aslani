@@ -208,10 +208,12 @@ export const useCartModal = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     width: "600px",
+    backgroundColor:COLORS.LightPink
   },
   title: {
     color: COLORS.Cinnabar,
     fontWeight: "bold",
+    margin:"0 0px 0 20px"
   },
   button: {
     color: COLORS.white,

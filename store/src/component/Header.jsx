@@ -13,7 +13,6 @@ import { withStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
 import CartModal from "./CartModal";
-import { addToCart } from "../redux/actions/cartAction";
 
 const StyledBadge = withStyles((theme) => ({
   badge: {

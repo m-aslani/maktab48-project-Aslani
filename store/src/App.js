@@ -10,6 +10,8 @@ import AdminPanelAvailablePage from './pages/AdminPanelAvailablePage';
 import AdminPanelOrderPage from './pages/AdminPanelOrderPage';
 import ProductDetail from './pages/ProductDetail';
 import ProductByCategoryList from './pages/ProductByCategoryList';
+import FinalPurchesePage from './pages/FinalPurchesePage';
+import PaymentPage from './pages/PaymentPage';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path ="/login" exact component={LoginPage}/>
           <Route path ="/products/category/:category" exact component={ProductByCategoryList}/>
           <Route path ="/products/:id" exact component={ProductDetail}/>
+          <Route path ="/finalize_Purchese" exact component={FinalPurchesePage}/>
+          <Route path ="/fake.shaparak" exact component={PaymentPage}/>
           <ProtectedRoute path ="/adminPanel/products" exact component={AdminPanelProductsPage}/>
           <ProtectedRoute path ="/adminPanel/available" exact component={AdminPanelAvailablePage}/>
           <ProtectedRoute path ="/adminPanel/orders" exact component={AdminPanelOrderPage}/>

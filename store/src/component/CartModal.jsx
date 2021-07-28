@@ -5,18 +5,26 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
 import CartTable from "./CartTable";
+import {Link} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 
 const CartModal = ({open, handleClose,cartProducts}) => {
     const classes = useCartModal();
     const [sum, setSum] = useState(0);
+    const history = useHistory();
 
     useEffect(() => {
         cartProducts.map((product,index)=>{
-            let i = sum + product.price
+            let i = sum + (product.price*product.numberOfProduct)
             setSum(i);
         })
     }, []);
+
+    const handleFinalizeCart = ()=>{
+      history.replace("/finalize_Purchese");
+      handleClose();
+    }
 
   return(
     <div>
@@ -33,10 +41,14 @@ const CartModal = ({open, handleClose,cartProducts}) => {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>
+          <div className={classes.paper} >
               <br />
               <br />
-            <h2 className={classes.title}>سبد خرید</h2>
+            <h1 className={classes.title}>
+              <strong>
+              سبد خرید
+              </strong>
+              </h1>
             <br />
             <br />
             <br />
@@ -50,6 +62,7 @@ const CartModal = ({open, handleClose,cartProducts}) => {
                 variant="contained"
                 color="secondary"
                 className={classes.button}
+                onClick={()=>handleFinalizeCart()}
               >
                 نهایی کردن سبد خرید
               </Button>
