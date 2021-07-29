@@ -7,8 +7,10 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders, addNewOrder } from "../redux/actions/orderActions";
 import { editProduct } from "../redux/actions/productActions";
+import { usePaymentStyle } from "../style/payment";
 
 const PaymentPage = () => {
+  const classes = usePaymentStyle();
   const history = useHistory();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cartProducts);
@@ -44,46 +46,20 @@ const PaymentPage = () => {
 
   useEffect(() => {
     cart.map((product, index) => {
-      //   console.log(product);
-      //   setProducts([
-      //     ...products,
-      //     {
-      //       id: product.id,
-      //       title: product.title,
-      //       price: product.price,
-      //       number: product.numberOfProduct,
-      //     },
-      //   ]);
       let i = sum + product.price * product.numberOfProduct;
       setSum(i);
     });
-    // cart.map((product, index) => {
-    //   console.log(product);
-    //   setProducts([
-    //     ...products,
-    //     {
-    //       id: product.id,
-    //       title: product.title,
-    //       price: product.price,
-    //       number: product.numberOfProduct,
-    //     },
-    //   ]);
-    // });
   }, []);
 
   return (
-    <div className="payment_container">
+    <div className={classes.paymentContainer}>
       <Container maxWidth="lg">
-        <Image
-          src={paymentImg}
-          imageStyle={{ height: "650px" }}
-          style={{ paddingTop: "calc(60%)" }}
-        />
-        {/* <img src={paymentImg} className="payment_container--img" /> */}
-        <div>
+        <img src={paymentImg} style={{width:"100%"}} />
+        <div className={classes.btnContainer}>
           <Button
             variant="contained"
             color="secondary"
+            className={classes.confirmBtn}
             onClick={() => handleConfirm()}
           >
             پرداخت
@@ -91,9 +67,10 @@ const PaymentPage = () => {
           <Button
             variant="contained"
             color="secondary"
+            className={classes.cancelBtn}
             onClick={() => handleCancel()}
           >
-            لغو پرداخت
+            انصراف 
           </Button>
         </div>
       </Container>

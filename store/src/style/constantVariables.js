@@ -6,4 +6,6 @@ export const COLORS = {
     white: "#F2F1E8",
     Cinnabar:"#E34234",
     LightPink:"#F9F3F3",
+    DarkPink:"#F55C47",
+    Green:"#4AA96C"
 }
