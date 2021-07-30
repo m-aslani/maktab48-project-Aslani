@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles, withStyles } from "@material-ui/core";
 import SideBar from "../component/SideBar";
+import Select from "@material-ui/core/Select";
 
 const sideBarStyle = makeStyles((theme) => ({
   menuButton: {
@@ -24,21 +25,34 @@ const ProductByCategoryList = () => {
   const dispatch = useDispatch();
   const { category } = useParams();
   const [mobileOpen, setMobileOpen] = useState(false);
-  let productsByCategory = [];
+  const [productsByCategory, setProductsByCategory] = useState([]);
+  const [sort, setSort] = useState("جدید ترین");
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+    setProductsByCategory(products);
+  }, [category]);
 
-  products.map((product, index) => {
-    if (product.category == category) {
-      productsByCategory.push(product);
+  const getValue = ({ price }) => price;
+
+  const handleSort = (e) => {
+    setSort(e.target.value);
+    if (e.target.value === "expensive") {
+      setProductsByCategory(
+        productsByCategory.sort((a, b) => getValue(b) - getValue(a))
+      );
+    } else if (e.target.value === "cheap") {
+      setProductsByCategory(
+        productsByCategory.sort((a, b) => getValue(a) - getValue(b))
+      );
     }
-  });
+    else if (e.target.value = "newest"){
+      setProductsByCategory(products);
+    }
+  };
 
   return (
     <div className="category-page">
@@ -61,19 +75,32 @@ const ProductByCategoryList = () => {
         className="category-page--product-container"
         style={{ gridColumnEnd: "span 8" }}
       >
-        <div className="title-container">
-          <h1 className="title-container--title">{category}</h1>
+        <div className="title_listPage">
+          <h1 className="title_listPage--title">{category}</h1>
+          <Select
+            native
+            value={sort}
+            onChange={(e) => handleSort(e)}
+            className="title_listPage--selector"
+            label="newest"
+          >
+            <option aria-label="None" value="" />
+            <option value="expensive">گران ترین</option>
+            <option value="cheap">ارزان ترین</option>
+          </Select>
         </div>
         <div className="card-Container">
-          {productsByCategory?.map((product, index) => {
-            return (
-              <div key={product.id}>
-                <Link to={`/products/${product.id}`} className="link">
-                  <CardProduct product={product} />
-                </Link>
-              </div>
-            );
-          })}
+          {productsByCategory
+            ?.filter((product) => product.category === category)
+            .map((product) => {
+              return (
+                <div key={product.id}>
+                  <Link to={`/products/${product.id}`} className="link">
+                    <CardProduct product={product} />
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>

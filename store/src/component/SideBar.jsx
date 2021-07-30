@@ -1,5 +1,4 @@
 import React from 'react';
-import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -45,11 +44,6 @@ const useStyles = makeStyles((theme) => ({
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
-    // const [mobileOpen, setMobileOpen] = React.useState(false);
-  
-    // const handleDrawerToggle = () => {
-    //     setMobileOpen(!mobileOpen);
-    //   };
 
       const drawer = (
         <div>
@@ -63,12 +57,10 @@ const useStyles = makeStyles((theme) => ({
 
     return (
         <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
             variant="temporary"
-            // anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
