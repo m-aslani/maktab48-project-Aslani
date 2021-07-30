@@ -14,6 +14,7 @@ import FinalPurchesePage from './pages/FinalPurchesePage';
 import PaymentPage from './pages/PaymentPage';
 import SuccessfullPaymentPage from './pages/SuccessfullPaymentPage';
 import CancelPaymentPage from './pages/CancelPaymentPage';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <div>
           <Route path="/" exact component={MainPage} />
           <Route path ="/login" exact component={LoginPage}/>
+          <Route path ="/search" exact component={SearchPage}/>
           <Route path ="/products/category/:category" exact component={ProductByCategoryList}/>
           <Route path ="/products/:id" exact component={ProductDetail}/>
           <Route path ="/finalize_Purchese" exact component={FinalPurchesePage}/>

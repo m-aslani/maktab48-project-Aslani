@@ -13,6 +13,7 @@ import { withStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
 import CartModal from "./CartModal";
+import SearchIcon from '@material-ui/icons/Search';
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -26,7 +27,6 @@ const StyledBadge = withStyles((theme) => ({
 const Header = () => {
   const history = useHistory();
   const classes = headerStyles();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
   const [cartNumber, setCartNumber] = useState(0);
   const cart = useSelector((state)=>state.cart.cartProducts);
   const [openModal, setOpenModal] = useState(false);
@@ -58,6 +58,10 @@ const Header = () => {
     setOpenModal(false);
   };
 
+  const handleSearch = ()=>{
+    history.push("/search");
+  }
+
   return (
     <div style={{marginBottom:"50px"}}>
       <AppBar position="fixed" className={classes.root}>
@@ -72,6 +76,14 @@ const Header = () => {
             <Typography className={classes.title} variant="h4">
               فروشگاه من
             </Typography>
+          </IconButton>
+          <IconButton
+            onClick={handleSearch}
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+          >
+            <SearchIcon />
           </IconButton>
           {!isLoggedIn() ? (
             <div className={classes.btnHolder}>

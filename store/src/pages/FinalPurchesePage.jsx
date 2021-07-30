@@ -11,18 +11,6 @@ import { setUserInfo } from "../redux/actions/userAction";
 import { useHistory } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import WarningIcon from '@material-ui/icons/Warning';
-// import {ThemeProvider } from '@material-ui/core/styles';
-
-// const theme = createTheme();
-// theme.typography.h3 = {
-//   fontSize: '1.2rem',
-//   '@media (min-width:600px)': {
-//     fontSize: '1.5rem',
-//   },
-//   [theme.breakpoints.up('md')]: {
-//     fontSize: '2rem',
-//   },
-// };
 
 jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 
