@@ -9,6 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles, withStyles } from "@material-ui/core";
 import SideBar from "../component/SideBar";
 import Select from "@material-ui/core/Select";
+import Pagination from "../component/Pagination";
 
 const sideBarStyle = makeStyles((theme) => ({
   menuButton: {
@@ -27,6 +28,8 @@ const ProductByCategoryList = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productsByCategory, setProductsByCategory] = useState([]);
   const [sort, setSort] = useState("جدید ترین");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -48,11 +51,21 @@ const ProductByCategoryList = () => {
       setProductsByCategory(
         productsByCategory.sort((a, b) => getValue(a) - getValue(b))
       );
-    }
-    else if (e.target.value = "newest"){
+    } else if ((e.target.value = "newest")) {
       setProductsByCategory(products);
     }
   };
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
+
+  useEffect(() => {
+    setProductsByCategory(currentPosts);
+  }, [currentPage]);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="category-page">
@@ -84,7 +97,7 @@ const ProductByCategoryList = () => {
             className="title_listPage--selector"
             label="newest"
           >
-            <option aria-label="None" value="" />
+            <option aria-label="newest" value="newest" >جدید ترین</option>
             <option value="expensive">گران ترین</option>
             <option value="cheap">ارزان ترین</option>
           </Select>
@@ -102,6 +115,12 @@ const ProductByCategoryList = () => {
               );
             })}
         </div>
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={products.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );
