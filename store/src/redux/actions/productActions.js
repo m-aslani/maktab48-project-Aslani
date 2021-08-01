@@ -1,5 +1,12 @@
 import { ActionTypes } from "../constants/action-type.js";
-import {getAllProducts, getAProductById , deleteProductById , editProductById , addProduct , getProductsByCategory } from "../../api/products";
+import {
+  getAllProducts,
+  getAProductById,
+  deleteProductById,
+  editProductById,
+  addProduct,
+  getProductsByCategory,
+} from "../../api/products";
 
 export const setProducts = (products) => {
   return {
@@ -8,18 +15,18 @@ export const setProducts = (products) => {
   };
 };
 
-export const setCellPhoneProduct = (products)=>{
-  return{
+export const setCellPhoneProduct = (products) => {
+  return {
     type: ActionTypes.SET_CELLPHONE_PRODUC,
-    payload:products,
-  }
-}
-export const setSmartWatchProduct = (products)=>{
-  return{
+    payload: products,
+  };
+};
+export const setSmartWatchProduct = (products) => {
+  return {
     type: ActionTypes.SET_SMARTWATCH_PRODUC,
-    payload:products,
-  }
-}
+    payload: products,
+  };
+};
 
 export const selectedProduct = (product) => {
   return {
@@ -28,12 +35,12 @@ export const selectedProduct = (product) => {
   };
 };
 
-export const deleteSelectedProduct = (id)=>{
-  return{
+export const deleteSelectedProduct = (id) => {
+  return {
     type: ActionTypes.REMOVE_SELECTED_PRODUCT,
     payload: id,
-  }
-}
+  };
+};
 
 export const editSelectedProduct = (product) => {
   return {
@@ -42,56 +49,62 @@ export const editSelectedProduct = (product) => {
   };
 };
 
-export const addNewProduct = (product)=>{
-return{
-  type:ActionTypes.ADD_PRODUCT,
-  payload:product,
+export const setLoading = ()=>{
+  return{
+    type:ActionTypes.LOADING,
+  }
 }
-}
+
+export const addNewProduct = (product) => {
+  return {
+    type: ActionTypes.ADD_PRODUCT,
+    payload: product,
+  };
+};
 
 export const getProducts = () => async (dispatch, getState) => {
   let res = await getAllProducts();
-    dispatch(setProducts(res.data));
+  dispatch(setProducts(res.data));
+  dispatch(setLoading());
 };
-export const getProductsBYCategory = (category) => async (dispatch, getState) => {
-  let res = await getProductsByCategory(category);
-  if(category == "گوشی همراه"){
-    console.log("6");
-    dispatch(setCellPhoneProduct(res?.data));
-  }
-  else if(category == "ساعت هوشمند"){
-    console.log("5");
-    dispatch(setSmartWatchProduct(res?.data));
-  }
-};
+export const getProductsBYCategory =
+  (category) => async (dispatch, getState) => {
+    let res = await getProductsByCategory(category);
+    if (category == "گوشی همراه") {
+      dispatch(setCellPhoneProduct(res?.data));
+    } else if (category == "ساعت هوشمند") {
+      dispatch(setSmartWatchProduct(res?.data));
+    }
+  };
 
-export const getCellphone = ()=>async(dispatch)=>{
+export const getCellphone = () => async (dispatch) => {
   let res = await getProductsByCategory("گوشی همراه");
   dispatch(setCellPhoneProduct(res?.data));
-}
-export const getSmartWatch = ()=>async(dispatch)=>{
+};
+export const getSmartWatch = () => async (dispatch) => {
   let res = await getProductsByCategory("ساعت هوشمند");
   dispatch(setSmartWatchProduct(res?.data));
-}
+};
 
-export const getAProduct = (id) => async (dispatch)=>{
+export const getAProduct = (id) => async (dispatch) => {
   let res = await getAProductById(id);
   dispatch(selectedProduct(res.data));
-}
+};
 
-export const deleteProduct = (id) => async (dispatch)=>{
-  await deleteProductById(id)
+export const deleteProduct = (id) => async (dispatch) => {
+  await deleteProductById(id);
   dispatch(deleteSelectedProduct(id));
-}
+};
 
-export const editProduct = (newProduct) =>async(dispatch)=>{
+export const editProduct = (newProduct) => async (dispatch) => {
   console.log(newProduct);
- await editProductById(newProduct);
- dispatch(editSelectedProduct(newProduct));
-}
+  await editProductById(newProduct);
+  dispatch(editSelectedProduct(newProduct));
+};
 
-export const addAProduct = (product) =>async(dispatch)=>{
+export const addAProduct = (product) => async (dispatch) => {
   let res = await addProduct(product);
   console.log(res);
   dispatch(addNewProduct(res.data));
-}
+};
+

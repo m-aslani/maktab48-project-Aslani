@@ -5,6 +5,7 @@ const initialState = {
   cellPhones: [],
   smartWatch: [],
   selectedProduct: {},
+  loading: true,
 };
 
 export const productReducer = (state = initialState, { type, payload }) => {
@@ -17,7 +18,7 @@ export const productReducer = (state = initialState, { type, payload }) => {
 
     case ActionTypes.SET_SMARTWATCH_PRODUC:
       return { ...state.smartWatch, smartWatch: payload };
-      
+
     case ActionTypes.SELECTED_PRODUCT:
       return { ...state, selectedProduct: payload };
 
@@ -29,6 +30,10 @@ export const productReducer = (state = initialState, { type, payload }) => {
 
     case ActionTypes.ADD_PRODUCT:
       return { ...state.products, payload };
+
+    case ActionTypes.LOADING:
+      return { ...state, loading: false };
+
     default:
       return state;
   }
