@@ -7,6 +7,7 @@ import CategoryPreview from "../component/CategoryPreview";
    const products = useSelector((state) => state.allProducts.products);
     let cellPhone = [];
     const smartWatch = [];
+    const headPhone = [];
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getProducts());
@@ -19,13 +20,16 @@ import CategoryPreview from "../component/CategoryPreview";
         else if(product.category == "ساعت هوشمند"){
           smartWatch.push(product);
         }
+        else if(product.category == "هدفن"){
+          headPhone.push(product);
+        }
       })
 
     return (
         <div>
             <CategoryPreview categoryName="گوشی همراه" products={cellPhone}/>
             <CategoryPreview categoryName="ساعت هوشمند" products={smartWatch}/>
-            <CategoryPreview categoryName="هنزفری"/>
+            <CategoryPreview categoryName="هدفن" products={headPhone}/>
         </div>
     )
 }

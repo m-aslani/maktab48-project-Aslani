@@ -79,6 +79,7 @@ export const useLoginPageStyle = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    // margin:"0 0 183px 0"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -102,6 +103,7 @@ export const useLoginPageStyle = makeStyles((theme) => ({
 export const useTableStyle = makeStyles((theme) => ({
   root: {
     width: "90%",
+    height:"500px"
   },
   container: {
     maxHeight: 440,
@@ -132,8 +134,9 @@ export const useOrderTableContainer = makeStyles((theme) => ({
 export const useProductsPageStyle = makeStyles((theme) => ({
   tabelContainer: {
     display: "flex",
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "center",
+    height:"800px"
   },
   header: {
     margin: "20px 0 20px 80px ",
@@ -159,6 +162,7 @@ export const useProductsPageStyle = makeStyles((theme) => ({
   button: {
     color: COLORS.white,
     backgroundColor: COLORS.Cinnabar,
+    margin:"0 80px 0 0"
   },
 }));
 

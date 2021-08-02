@@ -4,6 +4,7 @@ const initialState = {
   products: [],
   cellPhones: [],
   smartWatch: [],
+  headPhone:[],
   selectedProduct: {},
   loading: true,
 };
@@ -18,6 +19,9 @@ export const productReducer = (state = initialState, { type, payload }) => {
 
     case ActionTypes.SET_SMARTWATCH_PRODUC:
       return { ...state.smartWatch, smartWatch: payload };
+      
+    case ActionTypes.SET_HEADPHONE_PRODUC:
+      return { ...state.headPhone, headPhone: payload };
 
     case ActionTypes.SELECTED_PRODUCT:
       return { ...state, selectedProduct: payload };

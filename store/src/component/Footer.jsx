@@ -13,7 +13,7 @@ const Footer = () => {
     const classes = useFooterStyle();
   return (
     <div>
-      <AppBar position="static" className={classes.root} >
+      <AppBar position="relative" className={classes.root} >
         <Container maxWidth="md">
           <Toolbar className={classes.toolbar}>
               <br />

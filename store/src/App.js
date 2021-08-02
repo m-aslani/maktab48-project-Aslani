@@ -40,7 +40,7 @@ function App() {
           <Route path="*" exact component={NotFoundPage}/>
           </Switch>
           <Divider />
-          <Footer/>
+          {/* <Footer/> */}
       </Router>
     </div>
   );

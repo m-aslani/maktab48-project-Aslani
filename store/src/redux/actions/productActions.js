@@ -27,6 +27,12 @@ export const setSmartWatchProduct = (products) => {
     payload: products,
   };
 };
+export const setheadPhone = (products) => {
+  return {
+    type: ActionTypes.SET_HEADPHONE_PRODUC,
+    payload: products,
+  };
+};
 
 export const selectedProduct = (product) => {
   return {
@@ -74,6 +80,9 @@ export const getProductsBYCategory =
       dispatch(setCellPhoneProduct(res?.data));
     } else if (category == "ساعت هوشمند") {
       dispatch(setSmartWatchProduct(res?.data));
+    }
+    else if(category == "هدفن"){
+      dispatch(setheadPhone(res?.data));
     }
   };
 

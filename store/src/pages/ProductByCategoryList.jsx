@@ -67,6 +67,7 @@ const ProductByCategoryList = () => {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  console.log(productsByCategory);
   return (
     <div className="category-page">
       <div style={{ gridColumnEnd: "span 4" }}>

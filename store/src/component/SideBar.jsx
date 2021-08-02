@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
         <div>
           <SlideBarListItem category="گوشی همراه"/>
           <SlideBarListItem category="ساعت هوشمند"/>
-          <SlideBarListItem category="هنزفری"/>
+          <SlideBarListItem category="هدفن"/>
         </div>
       );
 
