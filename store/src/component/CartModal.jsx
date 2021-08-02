@@ -50,7 +50,7 @@ const CartModal = ({ open, handleClose, cartProducts }) => {
             <br />
             <br />
             {
-              cartProducts.lengh > 0 ?
+              cartProducts.length > 0 ?
               <CartTable cart={cartProducts} />
               :
               <p className="message-cart">
@@ -68,7 +68,7 @@ const CartModal = ({ open, handleClose, cartProducts }) => {
                 color="secondary"
                 className={classes.button}
                 onClick={() => handleFinalizeCart()}
-                disabled={cartProducts.lengh > 0 ? false : true}
+                disabled={cartProducts.length > 0 ? false : true}
               >
                 نهایی کردن سبد خرید
               </Button>
