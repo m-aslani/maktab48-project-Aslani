@@ -71,7 +71,7 @@ const InfoTable = ({products}) => {
                         {product.price}
                       </TableCell>
                       <TableCell align={columns[2].align}>
-                        {product.number}
+                        {product.numberOfProduct}
                       </TableCell>
                     </TableRow>
                   );

@@ -95,6 +95,7 @@ export const useLoginPageStyle = makeStyles((theme) => ({
   },
   header: {
     color: COLORS.DarkBlue,
+    margin:"50px 0",
   },
 }));
 

@@ -76,7 +76,7 @@ const LoginPage = () => {
             color="primary"
             className={classes.submit}
           >
-            LOGIn
+            ورود
           </Button>
         </form>
       </div>
