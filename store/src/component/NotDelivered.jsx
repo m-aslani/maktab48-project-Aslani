@@ -9,13 +9,14 @@ const NotDelivered = () => {
   const dispatch = useDispatch();
   const classes = useOrderTable();
 
-  useEffect(() => {
-    dispatch(getNotDeliveredOrders());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getNotDeliveredOrders());
+  // }, []);
+
 
   return (
     <div className={classes.tableContainer}>
-      <OrderTable orders={notDeliverdOrders} />
+      <OrderTable option={1} />
     </div>
   );
 };

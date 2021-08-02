@@ -16,26 +16,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProducts, deleteProduct, setProducts } from "../redux/actions/productActions";
 
  const ProductTable = ({columns,handleOpenModal,products}) => {
-  // const products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
     const classes = useTableStyle();
     const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  // const [loading, setLoading] = useState(true);
-  // let loading = false;
-
-  // if(!products){
-  //   loading = true;
-  //   console.log("hi");
-  // }
-  // else{
-  //   loading = false;
-  // }
-
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  //   // loading = false;
-  // }, []);
 
   const handleDeleteAProduct = (id) => {
     dispatch(deleteProduct(id));

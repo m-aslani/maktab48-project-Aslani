@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,10 +7,13 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import { useTableStyle } from "../style";
+import { useOrderTableContainer } from "../style";
 import InfoIcon from "@material-ui/icons/Info";
 import IconButton from "@material-ui/core/IconButton";
 import MoreInfoModal from "./MoreInfoModal";
+
+import { useSelector, useDispatch } from "react-redux";
+import { getNotDeliveredOrders , getDeliveredOrders} from "../redux/actions/orderActions";
 
 const columns = [
   { id: "name", label: "نام کاربر", minWidth: 150 },
@@ -29,12 +32,25 @@ const columns = [
   },
 ];
 
-const OrderTable = ({ orders }) => {
-  const classes = useTableStyle();
+const OrderTable = ({ option}) => {
+  const classes = useOrderTableContainer();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [choosenOrder, setChoosenOrder] = useState({});
   const [openModal, setOpenModal] = useState(false);
+  const orders = useSelector((state) => state.orders.orders);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(option === 1){
+      console.log("1");
+      dispatch(getNotDeliveredOrders());
+    }
+    else if(option === 2){
+      console.log("2");
+      dispatch(getDeliveredOrders());
+    }
+  }, [option,openModal])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -53,16 +69,15 @@ const OrderTable = ({ orders }) => {
   const handleClose = () => {
     setChoosenOrder({});
     setOpenModal(false);
-    
-    // window.location.reload();
   };
+console.log("#############    ",orders);
 
   return (
     <div>
       <Paper className={classes.root}>
         <TableContainer className={classes.container}>
           <Table stickyHeader aria-label="sticky table">
-            <TableHead className={classes.tabelHeader} style={{backgroundColor:"yellow"}}>
+            <TableHead className={classes.tabelHeader}>
               <TableRow>
                 {columns.map((column) => (
                   <TableCell

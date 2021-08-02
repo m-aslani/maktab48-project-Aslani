@@ -7,6 +7,7 @@ export const headerStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: COLORS.DarkBlue,
     display: "flex",
+    justifyContent: "space-between",
   },
   appBar: {
     [theme.breakpoints.up("sm")]: {
@@ -14,8 +15,12 @@ export const headerStyles = makeStyles((theme) => ({
       marginLeft: drawerWidth,
     },
     zIndex: theme.zIndex.drawer + 1,
-    zIndex:99,
-    marginBottom:"50px"
+    zIndex: 99,
+    marginBottom: "50px",
+  },
+  logo:{
+    width:"45px",
+    height:"45px"
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -27,12 +32,18 @@ export const headerStyles = makeStyles((theme) => ({
     position: "absolute",
     right: 20,
   },
-  managerButton: {},
+  leftSide: {
+    display: "flex",
+    alignItems:"center"
+  },
   cartButton: {
     color: COLORS.white,
   },
   title: {
-    marginLeft: "8px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "25px",
+    },
+    margin:"0 15px 0 5px"
   },
   linkContainer: {
     position: "absolute",
@@ -43,6 +54,22 @@ export const headerStyles = makeStyles((theme) => ({
   link: {
     margin: "0 10px",
     color: COLORS.white,
+  },
+  mobileLink: {
+    margin: "0 10px",
+    color: COLORS.DarkBlue,
+  },
+  sectionDesktop: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+  },
+  sectionMobile: {
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
   },
 }));
 
@@ -86,6 +113,21 @@ export const useTableStyle = makeStyles((theme) => ({
   },
 }));
 
+export const useOrderTableContainer = makeStyles((theme) => ({
+  root: {
+    width: "97%",
+  },
+  container: {
+    maxHeight: 440,
+  },
+  tabelCell: {
+    height: "50px",
+  },
+  tabelHeader: {
+    backgroundColor: COLORS.Yellow,
+  },
+}));
+
 export const useProductsPageStyle = makeStyles((theme) => ({
   tabelContainer: {
     display: "flex",
@@ -94,13 +136,24 @@ export const useProductsPageStyle = makeStyles((theme) => ({
   },
   header: {
     margin: "20px 0 20px 80px ",
-    color: COLORS.DarkBlue,
+    color: COLORS.Cinnabar,
+    [theme.breakpoints.down("md")]: {
+      margin: "0px 0px 0 10px",
+      fontSize: "20px",
+    },
   },
   headerContainer: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    width: "90%",
+    width: "100%",
+    margin: "100px 0px 50px 0px",
+  },
+  radioGroupg: {
+    flexDirection: "row",
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+    },
   },
   button: {
     color: COLORS.white,
@@ -150,14 +203,14 @@ export const useModalStyle = makeStyles((theme) => ({
 
 export const useOrderTable = makeStyles((theme) => ({
   tableContainer: {
-    marginLeft: "100px",
+    marginLeft: "30px",
   },
 }));
 
 export const useInfoTable = makeStyles((theme) => ({
   root: {
-    '& .super-app-theme--header': {
-      backgroundColor: 'rgba(255, 7, 0, 0.55)',
+    "& .super-app-theme--header": {
+      backgroundColor: "rgba(255, 7, 0, 0.55)",
     },
     width: "100%",
     margin: "10px 0",
@@ -208,19 +261,19 @@ export const useCartModal = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     width: "600px",
-    backgroundColor:COLORS.LightPink
+    backgroundColor: COLORS.LightPink,
   },
   title: {
     color: COLORS.Cinnabar,
     fontWeight: "bold",
-    margin:"0 0px 0 20px"
+    margin: "0 0px 0 20px",
   },
   button: {
     color: COLORS.white,
     backgroundColor: COLORS.Cinnabar,
   },
-  btnHolder:{
-    display:"flex",
+  btnHolder: {
+    display: "flex",
     justifyContent: "space-between",
-  }
+  },
 }));

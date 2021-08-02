@@ -2,10 +2,20 @@ import { makeStyles, withStyles } from "@material-ui/core";
 import { COLORS } from "./constantVariables";
 
 export const useFormStyle = makeStyles((theme) => ({
-  root: {
+  container:{
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
+    justifyContent:"center",
+  },
+  root: {
+    boxShadow: theme.shadows[5],
+    width:"60%",
+    margin:"20px 0",
+    [theme.breakpoints.down('sm')]:{
+      margin:"0px 0",
+      width:"90%"
+    }
   },
   title:{
     fontSize: '1.2rem',
@@ -24,9 +34,9 @@ export const useFormStyle = makeStyles((theme) => ({
   },
   fild: {
     "& > *": {
-      width: "50%",
+      width: "70%",
     },
-    margin: "10px 0",
+    margin: "20px 0",
     width: "100%",
     display: "flex",
     flexDirection:"column",
@@ -34,8 +44,13 @@ export const useFormStyle = makeStyles((theme) => ({
     justifyContent:"center"
   },
   submitBtn:{
-    backgroundColor:COLORS.Pewter,
-    fontSize: '1.2rem',
+    backgroundColor:COLORS.Cinnabar,
+    boxShadow: theme.shadows[5],
+    border:"none",
+    "& > *":{
+      color:COLORS.white,
+      fontSize: '1.2rem',
+    }
   },
   error:{
     color:COLORS.Cinnabar,

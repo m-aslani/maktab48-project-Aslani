@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import paymentImg from "../assets/pics/paymentImg.jpg";
 import Container from "@material-ui/core/Container";
-import Image from "material-ui-image";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders, addNewOrder } from "../redux/actions/orderActions";

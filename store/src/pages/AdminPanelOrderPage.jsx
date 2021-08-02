@@ -34,7 +34,7 @@ const AdminPanelOrderPage = () => {
             name="deliveryCondition"
             value={value}
             onChange={handleChange}
-            style={{flexDirection:"row"}}
+            className={classes.radioGroupg}
           >
             <FormControlLabel
               value="delivered"

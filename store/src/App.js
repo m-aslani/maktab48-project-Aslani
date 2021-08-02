@@ -15,6 +15,9 @@ import PaymentPage from './pages/PaymentPage';
 import SuccessfullPaymentPage from './pages/SuccessfullPaymentPage';
 import CancelPaymentPage from './pages/CancelPaymentPage';
 import SearchPage from './pages/SearchPage';
+import NotFoundPage from './pages/NotFoundPage';
+import Divider from '@material-ui/core/Divider';
+import Footer from './component/Footer';
 
 function App() {
   return (
@@ -22,7 +25,6 @@ function App() {
       <Router>
           <Header/>
         <Switch>
-          <div>
           <Route path="/" exact component={MainPage} />
           <Route path ="/login" exact component={LoginPage}/>
           <Route path ="/search" exact component={SearchPage}/>
@@ -35,8 +37,10 @@ function App() {
           <ProtectedRoute path ="/adminPanel/products" exact component={AdminPanelProductsPage}/>
           <ProtectedRoute path ="/adminPanel/available" exact component={AdminPanelAvailablePage}/>
           <ProtectedRoute path ="/adminPanel/orders" exact component={AdminPanelOrderPage}/>
-          </div>
+          <Route path="*" exact component={NotFoundPage}/>
           </Switch>
+          <Divider />
+          <Footer/>
       </Router>
     </div>
   );

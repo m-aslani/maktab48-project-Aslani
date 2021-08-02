@@ -48,7 +48,7 @@ const FinalPurchesePage = () => {
         {/* <h1>
           </h1> */}
       </div>
-      <div>
+      <div className={classes.container}>
         <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
           <div className={classes.fild}>
             <TextField

@@ -10,3 +10,24 @@
     text-decoration: none;
     color: #E34234;
   }
+
+  .NavLink{
+    text-decoration: none;
+  }
+
+  .MuiInputBase-input{
+    color: white;
+  }
+
+  .error-container{
+    display: flex;
+    align-items: center;
+    &--error{
+      width: 30%;
+      margin: 50px 30px;
+    }
+    p{
+      font-weight: bolder;
+      font-size: larger;
+    }
+  }

@@ -7,13 +7,14 @@ import ModalLabel from "./ModalLabel";
 import InfoTable from "./InfoTable";
 import Button from "@material-ui/core/Button";
 import { delivery } from "../redux/actions/orderActions";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 
 const MoreInfoModal = ({ open, handleClose, selectedOrder }) => {
   const classes = useInfoModal();
   const [option, setOption] = useState(true);
   const dispatch = useDispatch();
-
+  const orders = useSelector((state) => state.orders.orders);
+  
   useEffect(() => {
     if (selectedOrder.condition === true) {
       setOption(false);

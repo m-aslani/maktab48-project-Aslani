@@ -40,12 +40,6 @@ const AdminPanelProductsPage = () => {
   useEffect(() => {
     dispatch(getProducts());
   }, []);
-
-  // const handleDeleteAProduct = (id) => {
-  //   dispatch(deleteProduct(id));
-  //   dispatch(getProducts());
-  // };
-  // console.log(products);
   
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -61,7 +55,6 @@ const AdminPanelProductsPage = () => {
     setSelectedProduct({});
     dispatch(getProducts());
     setOpenModal(false);
-    // window.location.reload(); 
   };
 
 
